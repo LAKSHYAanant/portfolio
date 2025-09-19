@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshya's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'VT323', monospace;
+            /* overflow: hidden; Removed to allow scrolling */
+        }
+        
+        /* Each letter is a span that will be animated */
+        .wavy-text span {
+            position: relative;
+            display: inline-block;
+            animation: wave 1.5s infinite;
+            animation-delay: calc(0.1s * var(--i));
+            /* Added text-shadow for a 3D effect */
+            text-shadow:
+                1px 1px #3b0764,
+                2px 2px #3b0764,
+                3px 3px #3b0764,
+                4px 4px #3b0764;
+        }
+        
+        /* Keyframe animation for the up-and-down motion */
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* Ensure spaces are preserved without being empty and collapsing */
+        .wavy-text span.space {
+            width: 0.5em; /* Give space a width */
+            animation: none; /* Don't animate spaces */
+            text-shadow: none; /* Don't apply shadow to spaces */
+        }
+
+        #matrix-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0; /* Ensure it's behind the text content */
+        }
+
+        /* Animation for the slide-in effect */
+        #skills-column {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        #skills-column.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-purple-900 text-white">
+
+    <nav class="bg-slate-900 bg-opacity-80 backdrop-blur-md p-4 fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">&lt;/&gt; Lakshya Anant</a>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#" class="hover:text-purple-400 transition-colors">Home</a>
+                <a href="#about-section" class="hover:text-purple-400 transition-colors">About</a>
+                <a href="#qualification-section" class="hover:text-purple-400 transition-colors">Qualification</a>
+                <a href="#services-section" class="hover:text-purple-400 transition-colors">Services</a>
+                <a href="#connect-section" class="hover:text-purple-400 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative flex items-center justify-center min-h-screen">
+        <!-- Canvas for the Matrix background effect -->
+        <canvas id="matrix-canvas"></canvas>
+
+        <!-- Container for the animated text, positioned above the canvas -->
+        <div class="text-center relative z-10">
+            <h1 id="wavy1" class="text-5xl md:text-7xl lg:text-8xl select-none">
+                Hello,
+            </h1>
+            <h1 id="wavy2" class="wavy-text text-5xl md:text-7xl lg:text-8xl select-none">
+                <!-- Text will be injected here by JavaScript -->
+            </h1>
+            <p id="subtitle" class="text-2xl md:text-3xl lg:text-4xl mt-4">
+                A Web Developer
+            </p>
+        </div>
+
+        <!-- Scroll Down Button -->
+        <a href="#about-section" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 p-2 rounded-full hover:bg-purple-700 transition-colors duration-300">
+            <svg class="w-8 h-8 text-white animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </a>
+    </section>
+
+    <section id="about-section" class="min-h-screen bg-slate-900 p-10 flex items-center justify-center">
+        <div class="max-w-6xl w-full">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                
+                <!-- Left Column: Skills -->
+                <div id="skills-column" class="text-center md:text-left">
+                    <h3 class="text-3xl md:text-4xl mb-6 font-bold">Systems I've been working with:</h3>
+                    <div class="bg-slate-800 p-8 rounded-lg text-left">
+                        <ul class="list-disc list-inside text-lg md:text-xl space-y-3">
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Tkinter</li>
+                            <li>Oracle Cloud Infrastructure</li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Right Column: About Me -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-4xl md:text-6xl mb-6 font-bold">About Me</h2>
+                    <p class="text-lg md:text-xl">
+                        I'm a Web developer who builds beautiful and functional user interfaces. What sets me apart is my expertise in SQL and Python. I bridge the gap between front-end design and back-end data management, I understand how to retrieve, manipulate, and display the data that powers it, leading to faster development cycles and more robust, data-driven features.
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <section id="qualification-section" class="min-h-screen bg-purple-900 p-10 flex items-center justify-center" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');">
+        <div class="max-w-6xl w-full text-center">
+            <h2 class="text-4xl md:text-6xl mb-12 font-bold">Qualification & Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start text-left">
+                
+                <!-- Education Column -->
+                <div>
+                    <h3 class="text-3xl md:text-4xl mb-6 font-bold text-center md:text-left">Education & Experience</h3>
+                    <div class="bg-purple-800 p-8 rounded-lg mb-6 transition-transform transform hover:scale-105">
+                        <h4 class="text-2xl font-bold">Bachelor of Technology</h4>
+                        <p class="text-lg text-slate-300">GGSIPU| 2022 - 2026</p>
+                        <p class="mt-2">Specialization in Computer Science & Engineering.</p>
+                    </div>
+                    <div class="bg-purple-800 p-8 rounded-lg transition-transform transform hover:scale-105">
+                        <h4 class="text-2xl font-bold">Freelance Front End Developer</h4>
+                        <p class="text-lg text-slate-300">2023 - Present</p>
+                         <p class="mt-2">Developed and maintained responsive websites.</p>
+                    </div>
+                </div>
+
+                <!-- Qualifications Column -->
+                <div>
+                     <h3 class="text-3xl md:text-4xl mb-6 font-bold text-center md:text-left">Qualifications</h3>
+                     <div class="bg-purple-800 p-8 rounded-lg transition-transform transform hover:scale-105">
+                        <ul class="list-none space-y-3 text-lg md:text-xl">
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Oracle Cloud Certified Associate</li>
+                            <li class="flex items-center"><svg class="w-5 h-5 mr-3 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Meta Front-End Development</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="services-section" class="bg-purple-900 py-24 sm:py-32" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');">
+        <div class="mx-auto max-w-6xl px-6 lg:px-8 text-center">
+            <h2 class="text-4xl md:text-6xl mb-16 font-bold">Services I Offer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+                <!-- Service Card 1: Web Design -->
+                <div class="bg-purple-800 p-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.5L15.232 5.232z"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Web Design</h3>
+                    <p class="text-slate-300">Crafting visually stunning and intuitive user interfaces that provide an exceptional user experience.</p>
+                </div>
+
+                <!-- Service Card 2: Frontend Development -->
+                <div class="bg-purple-800 p-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Frontend Development</h3>
+                    <p class="text-slate-300">Bringing designs to life with clean, efficient, and maintainable HTML, CSS, and JavaScript.</p>
+                </div>
+
+                <!-- Service Card 3: Backend & Database -->
+                <div class="bg-purple-800 p-8 rounded-lg transition-transform transform hover:scale-105 shadow-lg">
+                    <svg class="w-16 h-16 mx-auto mb-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"></path></svg>
+                    <h3 class="text-2xl font-bold mb-4">Backend & Database</h3>
+                    <p class="text-slate-300">Building robust backend systems and managing data efficiently with SQL and Oracle Cloud Infrastructure.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="connect-section" class="bg-slate-900 py-24 sm:py-32">
+        <div class="mx-auto max-w-4xl text-center">
+            <h2 class="text-4xl md:text-6xl mb-4 font-bold">Interested in working together? Connect With Me</h2>
+            <p class="text-lg md:text-xl mb-8 text-slate-300">
+                I'd love to hear from you! Feel free to get in touch using the contact information below. I will respond to your message as quickly as possible and look forward to connecting with you soon.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <a href="https://wa.me/918743889525" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-lg text-xl transition-transform transform hover:scale-105 shadow-lg w-full sm:w-auto justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-3"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.474.854-1.141 4.155 4.272-1.119.824.455z"/></svg>
+                    Chat on WhatsApp
+                </a>
+                <a href="https://www.linkedin.com/in/lakshya-anant-b82728266/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-transform transform hover:scale-105 shadow-lg w-full sm:w-auto justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-3"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    Connect on LinkedIn
+                </a>
+                <a href="https://github.com/LAKSHYAanant" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-gray-800 hover:bg-gray-900 text-white font-bold py-4 px-8 rounded-lg text-xl transition-transform transform hover:scale-105 shadow-lg w-full sm:w-auto justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="mr-3"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    View on GitHub
+                </a>
+            </div>
+            <div class="mt-12 text-lg md:text-xl text-slate-300 space-y-2">
+                <p>Email me - <a href="mailto:lakshyaanant70@gmail.com" class="text-purple-400 hover:underline">lakshyaanant70@gmail.com</a></p>
+                <p>Call me - <a href="tel:8743889525" class="text-purple-400 hover:underline">8743889525</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-center p-6 border-t border-slate-700">
+        <p class="text-slate-400">&copy; 2025 Lakshya Anant. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Function to apply the wavy animation effect to a given element
+        function applyWavyEffect(elementId, text) {
+            const wavyTextElement = document.getElementById(elementId);
+            if (!wavyTextElement) return;
+
+            // Split the text into individual letters and wrap them in spans
+            const letters = text.split('').map((char, index) => {
+                // If the character is a space, give it a special class
+                if (char === ' ') {
+                    return `<span class="space" style="--i:${index};"></span>`;
+                }
+                return `<span style="--i:${index};">${char}</span>`;
+            }).join('');
+
+            // Set the inner HTML of the element to our generated spans
+            wavyTextElement.innerHTML = letters;
+        }
+
+        // Apply the effect to the main heading lines
+        applyWavyEffect('wavy2', 'I am Lakshya Anant');
+
+        // --- Matrix Background Effect ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Set canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Characters for the matrix effect
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()_+-=[]{}|;:",.<>/?';
+        const charArray = characters.split('');
+
+        const fontSize = 16;
+        const columns = Math.ceil(canvas.width / fontSize);
+
+        // An array of y-positions for each column of characters
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            // Fill the canvas with a semi-transparent purple to create a fading trail effect
+            ctx.fillStyle = 'rgba(59, 7, 100, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set the color and font for the falling characters
+            ctx.fillStyle = '#a78bfa'; // A light purple
+            ctx.font = `${fontSize}px VT323, monospace`;
+
+            // Loop through each column
+            for (let i = 0; i < drops.length; i++) {
+                // Pick a random character
+                const text = charArray[Math.floor(Math.random() * charArray.length)];
+                // Draw the character
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                // Reset the drop to the top randomly after it goes off screen
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                // Move the drop down
+                drops[i]++;
+            }
+        }
+
+        // Start the animation loop
+        setInterval(drawMatrix, 50);
+        
+        // Handle window resizing
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Recalculate columns and reset drops
+            const newColumns = Math.ceil(canvas.width / fontSize);
+            drops.length = 0;
+            for (let i = 0; i < newColumns; i++) {
+                drops.push(1);
+            }
+        });
+
+        // --- Intersection Observer for scroll animations ---
+        const skillsColumn = document.getElementById('skills-column');
+
+        const observerOptions = {
+            root: null, // Use the viewport as the root
+            rootMargin: '0px',
+            threshold: 0.3 // Trigger when 30% of the element is visible
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                // If the element is intersecting the viewport, add the 'is-visible' class
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                } else {
+                    // If the element is not intersecting, remove the class to reset the animation
+                    entry.target.classList.remove('is-visible');
+                }
+            });
+        }, observerOptions);
+
+        if (skillsColumn) {
+            observer.observe(skillsColumn);
+        }
+    </script>
+
+</body>
+</html>
